@@ -9,7 +9,7 @@ public class Vertejums {
 	
 	
 	static Scanner scan = new Scanner(System.in);
-	
+	static DecimalFormat df = new DecimalFormat("0.#");
 	public static void veidotKriterijus(){
 		int kritSk=0;
 		do {
@@ -33,13 +33,28 @@ public class Vertejums {
 					(kriterijaSvars[0]==100 && studenti.length > 1));
 			maxSvars -= kriterijaSvars[i];
 		}
+		double rezultats;
+		for(int i=0; i<studenti.length; i++) {
+			rezultats=0;
+			for(int j=0; j<kriteriji.length; j++) {
+				rezultats += ((double) kriterijaSvars[j]/100)*kriterijaVertejums[i][j];
+			}
+			semestraVertejums[i] = rezultats;
+		}
 		
+		for(int i=0; i<studenti.length; i++) {	
+			for(int j=0; j<kriteriji.length; j++) {
+				System.out.println("Studenta "+studenti[i]+" vērtējums par kritēriju "+kriteriji[j]+" ir "+kriterijaVertejums[i][j]+", kura svars ir "+kriterijaSvars[j]);
+			}
+			System.out.println("Semestra vērtējums ir "+df.format(semestraVertejums[i])+"\n");
+		}
+		scan.close();
 	}
 	
 	public static void main(String[] args) {
 		int studSk, kritSk;
 		int kriteriji[] = null;
-		DecimalFormat df = new DecimalFormat("0.#");
+		
 		String izvele;
 		
 		
