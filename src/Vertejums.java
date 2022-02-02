@@ -1,6 +1,9 @@
 import java.text.DecimalFormat;
 import java.util.Scanner;
 
+
+
+
 public class Vertejums {
 	public static void main(String[] args) {
 		int studSk, kritSk;
