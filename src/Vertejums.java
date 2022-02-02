@@ -44,17 +44,6 @@ public class Vertejums {
 		
 		
 		
-		
-		do {
-			System.out.println("Kāds būs kritēriju skaits?");
-			kritSk = scan.nextInt();
-		}while(kritSk<1);
-		String[] kriteriji = new String[kritSk];
-		int[] kriterijaSvars = new int[kritSk];
-		int[][] kriterijaVertejums = new int[studenti.length][kritSk];
-		double[] semestraVertejums = new double[studenti.length];
-		
-		
 		//Definē kritērijus
 		int maxSvars = 100;
 		for(int i=0; i<kriteriji.length; i++) {
