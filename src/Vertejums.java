@@ -5,33 +5,21 @@ import java.util.Scanner;
 
 
 public class Vertejums {
-	public static void main(String[] args) {
-		int studSk, kritSk;
-		Scanner scan = new Scanner(System.in);
-		DecimalFormat df = new DecimalFormat("0.#");
-		     
-		do {
-			System.out.println("Cik studentiem aprēķināsi gala vērtējumu?");
-			studSk = scan.nextInt();
-		}while(studSk<1);
-		String[] studenti = new String[studSk];
-		
+	
+	
+	
+	static Scanner scan = new Scanner(System.in);
+	
+	public static void veidotKriterijus(){
+		int kritSk=0;
 		do {
 			System.out.println("Kāds būs kritēriju skaits?");
-			kritSk = scan.nextInt();
+			 kritSk = scan.nextInt();
 		}while(kritSk<1);
 		String[] kriteriji = new String[kritSk];
 		int[] kriterijaSvars = new int[kritSk];
-		int[][] kriterijaVertejums = new int[studSk][kritSk];
-		double[] semestraVertejums = new double[studSk];
-		
-		//Ievada studentu vārdus, uzvārdus
-		for(int i=0; i<studenti.length; i++) {
-			System.out.println("Ievadi "+(i+1)+". studentu");
-			studenti[i] = scan.next();
-		}
-		
-		//Definē kritērijus
+		int[][] kriterijaVertejums = new int[studenti.length][kritSk];
+		double[] semestraVertejums = new double[studenti.length];
 		int maxSvars = 100;
 		for(int i=0; i<kriteriji.length; i++) {
 			System.out.println("Ievadi "+(i+1)+". kritēriju");
@@ -42,9 +30,49 @@ public class Vertejums {
 				kriterijaSvars[i] = scan.nextInt();
 			}while(kriterijaSvars[i]>maxSvars || 
 					kriterijaSvars[i]<1 || 
-					(kriterijaSvars[0]==100 && kritSk > 1));
+					(kriterijaSvars[0]==100 && studenti.length > 1));
 			maxSvars -= kriterijaSvars[i];
 		}
+		
+	}
+	
+	public static void main(String[] args) {
+		int studSk, kritSk;
+		int kriteriji[] = null;
+		DecimalFormat df = new DecimalFormat("0.#");
+		String izvele;
+		
+		
+		do{
+			System.out.println("stop - apturēt programmu");
+			izvele=scan.next();
+		
+		switch(izvele){
+		case "1":
+			break;
+		case "2":
+			veidotKriterijus();
+			break;
+		case "stop": System.out.println("Programma apturēta!"); break;
+			default: System.out.println("Darbības nepastāv!");
+		}
+		}while(!izvele.equalsIgnoreCase("stop"));
+		
+		
+		do {
+			System.out.println("Cik studentiem aprēķināsi gala vērtējumu?");
+			studSk = scan.nextInt();
+		}while(studSk<1);
+		String[] studenti = new String[studSk];
+		
+		
+		//Ievada studentu vārdus, uzvārdus
+		for(int i=0; i<studenti.length; i++) {
+			System.out.println("Ievadi "+(i+1)+". studentu");
+			studenti[i] = scan.next();
+		}
+		
+		
 		
 		//Norāda vērtējumu kādu ieguvis katrs students par katru kritēriju
 		for(int i=0; i<kriterijaVertejums.length; i++) {
