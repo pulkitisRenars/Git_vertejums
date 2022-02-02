@@ -2,11 +2,28 @@ import java.text.DecimalFormat;
 import java.util.Scanner;
 
 public class Vertejums {
+	static Scanner scan = new Scanner(System.in);
 	public static void main(String[] args) {
 		int studSk, kritSk;
-		Scanner scan = new Scanner(System.in);
 		DecimalFormat df = new DecimalFormat("0.#");
-		     
+		String izvele;
+		
+		
+		do{
+			System.out.println("stop - apturēt programmu");
+			izvele=scan.next();
+		
+		switch(izvele){
+		case "1":
+			break;
+		case "2":
+			break;
+		case "stop": System.out.println("Programma apturēta!"); break;
+			default: System.out.println("Darbības nepastāv!");
+		}
+		}while(!izvele.equalsIgnoreCase("stop"));
+		
+		
 		do {
 			System.out.println("Cik studentiem aprēķināsi gala vērtējumu?");
 			studSk = scan.nextInt();
