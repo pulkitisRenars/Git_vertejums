@@ -2,19 +2,38 @@ import java.text.DecimalFormat;
 import java.util.Scanner;
 
 public class Vertejums {
+	static String[] studenti = null;
 	static Scanner scan = new Scanner(System.in);
+	static String[] studentii(){
+		int studSk;
+		do {
+			System.out.println("Cik studentiem aprēķināsi gala vērtējumu?");
+			studSk = scan.nextInt();
+		}while(studSk<1);
+		
+		studenti = new String[studSk];
+		
+		for(int i=0; i<studenti.length; i++) {
+			System.out.println("Ievadi "+(i+1)+". studentu");
+			studenti[i] = scan.next();
+		}
+		
+		return studenti;
+	}
 	public static void main(String[] args) {
 		int studSk, kritSk;
 		DecimalFormat df = new DecimalFormat("0.#");
 		String izvele;
+
 		
 		
 		do{
-			System.out.println("stop - apturēt programmu");
+			System.out.println("1 - izveidot studentu masīvu | stop - apturēt programmu");
 			izvele=scan.next();
 		
 		switch(izvele){
 		case "1":
+			studentii();
 			break;
 		case "2":
 			break;
@@ -24,11 +43,7 @@ public class Vertejums {
 		}while(!izvele.equalsIgnoreCase("stop"));
 		
 		
-		do {
-			System.out.println("Cik studentiem aprēķināsi gala vērtējumu?");
-			studSk = scan.nextInt();
-		}while(studSk<1);
-		String[] studenti = new String[studSk];
+		
 		
 		do {
 			System.out.println("Kāds būs kritēriju skaits?");
@@ -36,14 +51,9 @@ public class Vertejums {
 		}while(kritSk<1);
 		String[] kriteriji = new String[kritSk];
 		int[] kriterijaSvars = new int[kritSk];
-		int[][] kriterijaVertejums = new int[studSk][kritSk];
-		double[] semestraVertejums = new double[studSk];
+		int[][] kriterijaVertejums = new int[studenti.length][kritSk];
+		double[] semestraVertejums = new double[studenti.length];
 		
-		//Ievada studentu vārdus, uzvārdus
-		for(int i=0; i<studenti.length; i++) {
-			System.out.println("Ievadi "+(i+1)+". studentu");
-			studenti[i] = scan.next();
-		}
 		
 		//Definē kritērijus
 		int maxSvars = 100;
